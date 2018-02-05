@@ -1,6 +1,18 @@
 # Compiled class file
 *.class
 
+# Build files
+target/
+
+# IDEA Configuration files
+.idea/
+*.iml
+
+# Eclipse Configuration files
+.classpath
+.project
+.settings/
+
 # Log file
 *.log
 
