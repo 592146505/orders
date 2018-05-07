@@ -3,6 +3,7 @@ package com.roamer.orders.config;
 import com.mongodb.Mongo;
 import com.mongodb.MongoCredential;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -18,7 +19,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  * @date 2018/2/1
  */
 @Configuration
-@EnableMongoRepositories(value = "com.roamer.orders.**.dao")
+@ComponentScan(basePackages = "com.roamer.orders.dao")
+@EnableMongoRepositories(basePackages = "com.roamer.orders.dao")
 public class MongoConfig {
 
     /**
@@ -30,9 +32,9 @@ public class MongoConfig {
      */
     @Bean
     public MongoClientFactoryBean mongo() {
-        MongoCredential[] credentials = new MongoCredential[]{MongoCredential.createCredential("roamerdb", "OrdersDB", "Wsc3233993".toCharArray())};
+//        MongoCredential[] credentials = new MongoCredential[]{MongoCredential.createCredential("roamerdb", "OrdersDB", "Wsc3233993".toCharArray())};
         MongoClientFactoryBean mongo = new MongoClientFactoryBean();
-        mongo.setCredentials(credentials);
+//        mongo.setCredentials(credentials);
         mongo.setHost("127.0.0.1");
         return mongo;
     }
@@ -41,4 +43,5 @@ public class MongoConfig {
     public MongoOperations mongoTemplate(Mongo mongo) {
         return new MongoTemplate(mongo, "OrdersDB");
     }
+
 }
